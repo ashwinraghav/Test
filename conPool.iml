@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module type="JAVA_MODULE" version="4"> 
+  <component name="NewModuleRootManager" inherit-compiler-output="true"> 
+    <exclude-output/>  
+    <content url="file://$MODULE_DIR$"> 
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true"/>
+      <excludeFolder url="file://$MODULE_DIR$/target"/>
+    </content>  
+    <orderEntry type="inheritedJdk"/>  
+    <orderEntry type="sourceFolder" forTests="false"/>  
+    <output url="file://$MODULE_DIR$/target/classes"/>
+    <output-test url="file://$MODULE_DIR$/target/test-classes"/>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/amohanganesh/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar!/"/>
+        </CLASSES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/amohanganesh/.m2/repository/commons-io/commons-io/1.3.2/commons-io-1.3.2.jar!/"/>
+        </CLASSES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/amohanganesh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar!/"/>
+        </CLASSES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/amohanganesh/.m2/repository/commons-lang/commons-lang/2.3/commons-lang-2.3.jar!/"/>
+        </CLASSES>
+      </library>
+    </orderEntry>
+  </component> 
+</module>
