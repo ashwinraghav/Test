@@ -78,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogClient.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LogClient.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/test/LogClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="28" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.5596639" vertical-offset="417" max-vertical-offset="1290">
+            <state line="50" column="28" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1290">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,10 +107,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogServer.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LogServer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/test/LogServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="0" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0" vertical-offset="695" max-vertical-offset="1290">
+            <state line="59" column="0" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.31932774" vertical-offset="695" max-vertical-offset="1290">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,7 +130,7 @@
       <file leaf-file-name="KeyValueAggregator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/test/KeyValueAggregator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="34" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="1200">
+            <state line="35" column="0" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1185">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#421#434#0" expanded="true" />
@@ -651,12 +651,12 @@
       <created>1399152224952</created>
       <updated>1399152224952</updated>
       <workItem from="1399152228510" duration="49000" />
-      <workItem from="1399152278427" duration="14059000" />
+      <workItem from="1399152278427" duration="14264000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14108000" />
+    <option name="totallyTimeSpent" value="14313000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="22" width="1624" height="1028" extended-state="6" />
@@ -789,9 +789,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/test/LogClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="28" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1290">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/test/KeyValueAggregator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="34" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="1200">
+        <state line="35" column="0" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1185">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#421#434#0" expanded="true" />
@@ -801,16 +810,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/test/LogServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0" vertical-offset="695" max-vertical-offset="1290">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/test/LogClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="28" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.5596639" vertical-offset="417" max-vertical-offset="1290">
+        <state line="59" column="0" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.31932774" vertical-offset="695" max-vertical-offset="1290">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -33,7 +33,6 @@ public class KeyValueAggregator implements Runnable {
             int value = Integer.valueOf(parts[1]);
 
             Val val;
-System.out.println(key);
             if (store.containsKey(key)) {
                 val = store.get(key);
             } else {
@@ -46,8 +45,8 @@ System.out.println(key);
             //hashmap is thread safe
             store.put(key, val);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Unable to update store");
+            //e.printStackTrace();
+            System.out.println("Unable to update store. Incorrect Log format");
         }
 
     }
