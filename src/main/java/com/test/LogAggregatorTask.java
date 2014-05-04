@@ -12,7 +12,12 @@ public class LogAggregatorTask implements Runnable {
         this.input = input;
     }
 
-    //@Override
+    /**
+     * Splice the log as 1)ClientID and 2)Content
+     * If an ID is not found log is appended to a "global" log file
+     * TODO: Batching disk writes need to be implemented to increase throughput
+     */
+    @Override
     public void run() {
         try {
             String parts[] = this.input.split(Constants.delimiter);
@@ -44,7 +49,7 @@ public class LogAggregatorTask implements Runnable {
             out.println(content);
             out.close();
         } catch (IOException e) {
-            System.out.println("Unable to append to the log file");
+            System.out.println(Thread.currentThread().getId() + " : Unable to append to the log file");
         }
     }
 

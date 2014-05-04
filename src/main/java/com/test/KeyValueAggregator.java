@@ -21,7 +21,8 @@ public class KeyValueAggregator implements Runnable {
 
 
     /**
-     * TODO : cleanup regex
+     * Maintains an in memory HashMap of Keys and Values
+     * TODO: the hashmap is not persistent. Susceptible to JVM crashes
      * @param
      */
     @Override
@@ -46,8 +47,7 @@ public class KeyValueAggregator implements Runnable {
             //hashmap is thread safe
             store.put(key, val);
         } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("Unable to update store. Incorrect Log format");
+            System.out.println(Thread.currentThread().getId() + " : Unable to update store. Incorrect Log format");
         }
 
     }

@@ -3,7 +3,6 @@ package com.test;
 import org.joda.time.DateTime;
 
 import java.io.*;
-import java.net.Socket;
 
 /**
  * Created by amohanganesh on 5/3/14.
@@ -18,20 +17,22 @@ public class LogClient {
      * the static constructor to return null if the log file is inaccessible
      */
 
-    public static LogClient build(String filename) {
+    private String generateUniqueClientID(){
         DateTime dateTime = new DateTime().now();
         long threadId = Thread.currentThread().getId();
-        String ID = dateTime.toString() + String.valueOf(threadId);
+        return dateTime.toString() + String.valueOf(threadId);
+    }
+
+    public static LogClient build(String filename) {
         LogClient logClient = null;
 
         try {
-            //BufferedReader logTail = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader br = new BufferedReader(new FileReader(filename));
 
-            //start the flusher
-            (new Thread(new ClientFlusher())).start();
+            //start the Batcher
+            (new Thread(new LogBatcher(Constants.batchingTimeInterval))).start();
 
-            logClient = new LogClient(ID, br, filename);
+            logClient = new LogClient(br, filename);
         } finally {
             return logClient;
         }
@@ -40,13 +41,12 @@ public class LogClient {
     /**
      * cannot be invoked externally
      *
-     * @param id
      * @param logTail
      * @param filename
      */
-    private LogClient(String id, BufferedReader logTail, String filename) {
+    private LogClient(BufferedReader logTail, String filename) {
         this.logTail = logTail;
-        this.ID = id;
+        this.ID = generateUniqueClientID();
         this.fileName = filename;
     }
 
@@ -56,20 +56,18 @@ public class LogClient {
             while (true) {
 
                 userInput = this.logTail.readLine();
-                if (userInput == null) {
+
+                if (userInput == null) { //Sleep for a bit. Save some CPU
                     System.out.println(Thread.currentThread().getId() + " : No contents in log file. Sleeping ....");
-
-                    //wait until there is more of the file for us to read
-                    Thread.sleep(1000);
+                    Thread.sleep(Constants.dumpingTimeInterval);
                 } else {
-                    //System.out.println(Thread.currentThread().getId() + " : tailing...");
 
-                    synchronized (ClientFlusher.linkedBlockingDeque){
+                    synchronized (LogBatcher.batchingQueue){//enqueue for dispatch
                         StringBuffer writable = new StringBuffer();
                         writable.append(this.ID).append(Constants.delimiter).append(userInput);
 
                         //append to the queue to flush
-                        ClientFlusher.linkedBlockingDeque.offer(writable.toString());
+                        LogBatcher.batchingQueue.offer(writable.toString());
                     }
                 }
             }

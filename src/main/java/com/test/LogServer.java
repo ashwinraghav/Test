@@ -21,10 +21,9 @@ public class LogServer {
         LogServer logServer = null;
         try {
             ServerSocket serverSocket = new ServerSocket(Constants.portNumber);
-            System.out.println("Listening on port " + Constants.portNumber);
+            System.out.println(Thread.currentThread().getId() + " : Listening on port " + Constants.portNumber);
 
             logServer = new LogServer(serverSocket);
-
 
         } finally {//unable to create log server
             return logServer;
@@ -34,10 +33,10 @@ public class LogServer {
 
     private LogServer(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
-        this.executorService = Executors.newFixedThreadPool(5);
+        this.executorService = Executors.newFixedThreadPool(10);
 
         //start periodic dumps
-        (new Thread(new PeriodicStoreDumper(Constants.dumpingTimeInterval))).start();
+        (new Thread(new PeriodicStoreDumper(Constants.batchingTimeInterval))).start();
     }
 
 
@@ -56,6 +55,8 @@ public class LogServer {
             BufferedReader in = this.acceptNewConnection();
             String inputLine;
 
+            //read from the connection for as long as possible
+            //assumes that no client will hog this thread since clients batch data worth 50ms only.
             while ((inputLine = in.readLine()) != null) {
 
                 //created 2 runnable tasks that are enqueued for execution later

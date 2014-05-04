@@ -6,38 +6,46 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by amohanganesh on 5/3/14.
  */
-public class ClientFlusher implements Runnable {
-    //public static ConcurrentLinkedQueue<String> concurrentLinkedQueue = new ConcurrentLinkedQueue<String>();
-    public static LinkedBlockingDeque<String> linkedBlockingDeque = new LinkedBlockingDeque<String>();
+public class LogBatcher implements Runnable {
+    public static LinkedBlockingDeque<String> batchingQueue = new LinkedBlockingDeque<String>();
+    private int batchingInterval;
+
+    public LogBatcher(int batchingInterval){
+        this.batchingInterval = batchingInterval;
+    }
 
     //The loggers wait for a max of batchingTimeInterval
     @Override
     public void run() {
         while (true) {
             try {
-                //weakly consistent
                 ArrayList<String> list = new ArrayList<String>();
                 System.out.println(Thread.currentThread().getId() + " : Attempting to read from Batch Queue");
+
                 long start = new DateTime().now().getMillis();
                 long current = new DateTime().now().getMillis();
 
-
-                while (current - start < Constants.batchingTimeInterval) {
-                    //Blocking call for a duration of 'dumpingTimeInterval'
+                //read from queue for a max of 50ms.
+                //guarantees that batches are small
+                while (current - start < this.batchingInterval) {
                     String s;
-                    synchronized (linkedBlockingDeque) {
-                        s = linkedBlockingDeque.poll(Constants.batchingTimeInterval, TimeUnit.MILLISECONDS);
-                    }
+
+                    //wait on the queue for 10ms till something new arrives. Return null otherwise
+                    //no lock is acquired to read from queue
+                    s = batchingQueue.poll(Constants.dumpingTimeInterval, TimeUnit.MILLISECONDS);
+
+
                     if (s != null) {
                         list.add(s);
                     }
+
+                    //update current time
                     current = new DateTime().now().getMillis();
                 }
 
