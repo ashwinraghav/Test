@@ -47,7 +47,7 @@ public class LogServer {
 
     private BufferedReader acceptNewConnection() throws IOException {
         Socket clientSocket = serverSocket.accept();
-        System.out.println("Received Connection from " + clientSocket.getInetAddress());
+        System.out.println(Thread.currentThread().getId() + " : Received Connection from " + clientSocket.getInetAddress());
         return new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
 

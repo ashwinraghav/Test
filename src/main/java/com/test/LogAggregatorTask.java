@@ -7,30 +7,34 @@ import java.io.*;
  */
 public class LogAggregatorTask implements Runnable {
     String input;
-    public LogAggregatorTask(String input){
+
+    public LogAggregatorTask(String input) {
         this.input = input;
     }
 
     //@Override
     public void run() {
+        try {
+            String parts[] = this.input.split(Constants.delimiter);
+            String clientId = "global";
+            String content = "";
 
-        String parts[] = this.input.split(Constants.delimiter);
-        String clientId = "global";
-        String content = "";
+            if (parts[0] != null) { //Client identified
+                clientId = parts[0];
+            }
 
-        if(parts[0] != null){ //Client identified
-            clientId = parts[0];
+
+            if (parts[1] != null) { //Content identified
+                content = parts[1];
+            }
+
+            String fileName = Constants.logFolder + clientId;
+            appendToFile(content, fileName);
+
+            System.out.println(Thread.currentThread().getId() + " : Appended to " + fileName);
+        } catch (Exception e) {
+            System.out.println(Thread.currentThread().getId() + " : Unable to update store. Incorrect Log format");
         }
-
-
-        if(parts[1] != null){ //Content identified
-            content = parts[1];
-        }
-
-        String fileName = Constants.logFolder + clientId;
-        appendToFile(content, fileName);
-
-        System.out.println("Appended to " + fileName);
     }
 
     public void appendToFile(String content, String fileName) {

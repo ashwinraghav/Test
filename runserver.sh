@@ -1,1 +1,1 @@
-java -cp target/classes com.test.LogServer
+java -cp target/classes:target/dependency-jars/* com.test.LogServer

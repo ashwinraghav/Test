@@ -41,6 +41,7 @@ public class KeyValueAggregator implements Runnable {
 
             val.bumpFreq();
             val.bumpSum(value);
+            System.out.println(Thread.currentThread().getId() + " : Updated Key Value Store");
 
             //hashmap is thread safe
             store.put(key, val);
