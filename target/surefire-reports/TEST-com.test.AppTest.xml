@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.012" errors="0" skipped="0" tests="1" name="com.test.AppTest">
+<testsuite failures="0" time="0.037" errors="0" skipped="0" tests="1" name="com.test.AppTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/amohanganesh/repos/conPool"/>
     <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefirebooter6921071014791702572.jar"/>
+    <property name="surefire.real.class.path" value="/var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefirebooter6246242804114003422.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/"/>
     <property name="line.separator" value="
 "/>
@@ -30,7 +30,7 @@
     <property name="os.name" value="Mac OS X"/>
     <property name="sun.jnu.encoding" value="MacRoman"/>
     <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
-    <property name="surefire.test.class.path" value="/Users/amohanganesh/repos/conPool/target/test-classes:/Users/amohanganesh/repos/conPool/target/classes:/Users/amohanganesh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/amohanganesh/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:/Users/amohanganesh/.m2/repository/commons-io/commons-io/1.3.2/commons-io-1.3.2.jar:/Users/amohanganesh/.m2/repository/commons-lang/commons-lang/2.3/commons-lang-2.3.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/amohanganesh/repos/conPool/target/test-classes:/Users/amohanganesh/repos/conPool/target/classes:/Users/amohanganesh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/amohanganesh/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -42,11 +42,11 @@
     <property name="java.specification.version" value="1.6"/>
     <property name="file.encoding" value="MacRoman"/>
     <property name="user.name" value="amohanganesh"/>
-    <property name="java.class.path" value="/Users/amohanganesh/repos/conPool/target/test-classes:/Users/amohanganesh/repos/conPool/target/classes:/Users/amohanganesh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/amohanganesh/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:/Users/amohanganesh/.m2/repository/commons-io/commons-io/1.3.2/commons-io-1.3.2.jar:/Users/amohanganesh/.m2/repository/commons-lang/commons-lang/2.3/commons-lang-2.3.jar:"/>
+    <property name="java.class.path" value="/Users/amohanganesh/repos/conPool/target/test-classes:/Users/amohanganesh/repos/conPool/target/classes:/Users/amohanganesh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/amohanganesh/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar:"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
-    <property name="sun.java.command" value="/var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefirebooter6921071014791702572.jar /var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefire3953660815534768327tmp /var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefire4974543029563806426tmp"/>
+    <property name="sun.java.command" value="/var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefirebooter6246242804114003422.jar /var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefire3875473614827601992tmp /var/folders/rn/gfc7dqxn4950svbhw86kzssm0000gp/T/surefire3247193398215542689tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="apple.awt.CToolkit"/>
@@ -65,5 +65,5 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.002" classname="com.test.AppTest" name="testApp"/>
+  <testcase time="0.001" classname="com.test.AppTest" name="testApp"/>
 </testsuite>

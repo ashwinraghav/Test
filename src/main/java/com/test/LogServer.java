@@ -37,7 +37,7 @@ public class LogServer {
         this.executorService = Executors.newFixedThreadPool(5);
 
         //start periodic dumps
-        (new Thread( new PeriodicStoreDumper(Constants.timeInterval))).start();
+        (new Thread(new PeriodicStoreDumper(Constants.dumpingTimeInterval))).start();
     }
 
 
@@ -54,18 +54,20 @@ public class LogServer {
     public void listen() throws IOException {
         while (true) {
             BufferedReader in = this.acceptNewConnection();
+            String inputLine;
 
+            while ((inputLine = in.readLine()) != null) {
 
-            String inputLine = in.readLine();
+                //created 2 runnable tasks that are enqueued for execution later
+                //these methods return immediately
+                //the logging is not reliable
 
-            //created 2 runnable tasks that are enqueued for execution later
-            //these methods return immediately
-            //the logging is not reliable
-            this.executorService.execute(new LogAggregatorTask(inputLine));
-            this.executorService.execute(new KeyValueAggregator(inputLine));
+                this.executorService.execute(new LogAggregatorTask(inputLine));
+                this.executorService.execute(new KeyValueAggregator(inputLine));
+            }
         }
-
     }
+
 
     public static void main(String a[]) throws IOException {
         LogServer logServer = LogServer.build();
@@ -74,7 +76,7 @@ public class LogServer {
 }
 
 //executor.shutdown();
-       // while (!executor.isTerminated()) {
-        //}
+// while (!executor.isTerminated()) {
+//}
 
 //            while ((inputLine = in.readLine()) != null) {

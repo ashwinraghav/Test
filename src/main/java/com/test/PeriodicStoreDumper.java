@@ -8,7 +8,7 @@ public class PeriodicStoreDumper implements Runnable {
     int timeInterval;
 
     public PeriodicStoreDumper(int timeInterval){
-        this.timeInterval = timeInterval * 1000;
+        this.timeInterval = timeInterval;
     }
 
     @Override

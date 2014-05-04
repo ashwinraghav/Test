@@ -2,13 +2,8 @@ package com.test;
 
 import org.joda.time.DateTime;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
-//import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Created by amohanganesh on 5/3/14.
@@ -16,65 +11,86 @@ import java.net.UnknownHostException;
 public class LogClient {
     String ID;
     BufferedReader logTail;
+    String fileName;
 
     /**
      * a combination of the current time and threadID should provided sufficiently unique IDs
      * the static constructor to return null if the log file is inaccessible
      */
 
-    public static LogClient build(){
+    public static LogClient build(String filename) {
         DateTime dateTime = new DateTime().now();
         long threadId = Thread.currentThread().getId();
         String ID = dateTime.toString() + String.valueOf(threadId);
         LogClient logClient = null;
 
-        try{
-        BufferedReader logTail = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            //BufferedReader logTail = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader br = new BufferedReader(new FileReader(filename));
 
-        logClient = new LogClient(ID, logTail);
-        }finally {
+            //start the flusher
+            (new Thread(new ClientFlusher())).start();
+
+            logClient = new LogClient(ID, br, filename);
+        } finally {
             return logClient;
         }
     }
 
     /**
      * cannot be invoked externally
+     *
      * @param id
      * @param logTail
+     * @param filename
      */
-    private LogClient(String id, BufferedReader logTail){
+    private LogClient(String id, BufferedReader logTail, String filename) {
         this.logTail = logTail;
         this.ID = id;
+        this.fileName = filename;
     }
 
-    public void log(String userInput) throws IOException {
-        StringBuffer writable = new StringBuffer();
-
-        Socket sock = new Socket(Constants.hostName, Constants.portNumber);
-        PrintWriter out = new PrintWriter(sock.getOutputStream(), true);
-        writable.append(this.ID).append(Constants.delimiter).append(userInput);
-
-        out.println(writable.toString());
-        out.close();
-        System.out.println("Logged: " + writable.toString());
-
-    }
-
-    public void tailLogFile(){
+    public void tailLogFile() throws InterruptedException {
         String userInput;
-
         try {
-            while ((userInput = this.logTail.readLine()) != null) {
-                this.log(userInput);
+            while (true) {
+
+                userInput = this.logTail.readLine();
+                if (userInput == null) {
+                    System.out.println(Thread.currentThread().getId() + " : No contents in log file. Sleeping ....");
+
+                    //wait until there is more of the file for us to read
+                    Thread.sleep(1000);
+                } else {
+                    //System.out.println(Thread.currentThread().getId() + " : tailing...");
+
+                    synchronized (ClientFlusher.linkedBlockingDeque){
+                        StringBuffer writable = new StringBuffer();
+                        writable.append(this.ID).append(Constants.delimiter).append(userInput);
+
+                        //append to the queue to flush
+                        ClientFlusher.linkedBlockingDeque.offer(writable.toString());
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error Occured while tailing file");
         }
+
     }
 
-    public static void main(String a[]){
-        LogClient logClient = LogClient.build();
+    public static void main(String a[]) throws InterruptedException {
+
+        String logFile;
+        if (a.length != 1) {
+            System.out.println("Input format should be : filename");
+            logFile = "/tmp/foo";
+            //return;
+        }else{
+            logFile = a[0];
+        }
+
+        LogClient logClient = LogClient.build(logFile);
         logClient.tailLogFile();
     }
 }

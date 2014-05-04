@@ -33,6 +33,7 @@ public class LogAggregatorTask implements Runnable {
 
             System.out.println(Thread.currentThread().getId() + " : Appended to " + fileName);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(Thread.currentThread().getId() + " : Unable to update store. Incorrect Log format");
         }
     }
